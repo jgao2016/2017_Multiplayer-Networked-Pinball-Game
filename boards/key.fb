@@ -1,0 +1,28 @@
+board name=Flippers gravity = 25.0
+
+# define a ball 5
+ball name=BallA x=0.25 y=3.25 xVelocity=0 yVelocity=0
+
+circleBumper name=CircleF x=0 y=5
+
+absorber name=Abs x=0 y=19 width=20 height=1 
+
+portal name=p1 x=1 y=1 otherPortal=p2
+portal name=p2 x=5 y=5 otherPortal=p1
+
+# define some left flippers 4 
+leftFlipper name=FlipA x=0 y=8 orientation=90 
+
+# define some right flippers 2
+rightFlipper name=FlipB x=2 y=15 orientation=0
+
+fire trigger=CircleF action=Abs
+fire trigger=Abs action=FlipB
+fire trigger=FlipB action=FlipA
+fire trigger=p1 action=Abs
+
+# define events between keys and flippers
+keydown key=a action=FlipA
+keyup key=b action=Abs
+keyup key=space action=FlipA
+keyup key=space action=FlipB
